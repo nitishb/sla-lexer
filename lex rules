@@ -1,0 +1,23 @@
+LEX RULES
+
+Regular Definitions:-
+	
+	alpha - { a..z,A..Z }
+	chara - { All valid characters except double qoutes " }
+	space - { ' ', '\n', '\t'}
+
+Set of Tokens :- {START, TAGNAME, ATTRNAME, STRING, END, EOF}
+
+Set of Lexemes :- { <.(/|?|epsilon , alpha.alpha*.(space|=) , "char*" , > , (/|?).> }
+
+
+
+		Pattern						Action
+
+	<.(/|?|epsilon			return ['START']
+	alpha.alpha*.space		return ['TAGNAME',buf]
+	alpha.alpha*.=			return ['ATTRNAME',buf]
+	"char*"					return ['STRING',buf]
+	> + (/|?).>				return ['END']
+
+	
